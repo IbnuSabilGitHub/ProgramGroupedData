@@ -1,61 +1,11 @@
 #include <iostream>
-#include <cmath>
-#include <vector>
-#include <unordered_map>
+// #include <functionGroupedData.h> // Import Function
+#include "HeaderFunction.h"
 using namespace std;
-
-typedef vector<vector<int>> Matrix;
-
-int classLength(vector<int> rawData, int n);
-int interval(int n);
-int rangeData(vector<int> rawData);
-int min(vector<int> rawData);
-int max(vector<int> rawData);
-vector<int> countFrequency(const vector<int> rawData, const Matrix &classUpAndDown);
-vector<double> dataCenter(const Matrix classRoom, int class_lenght);
-vector<double> Ui(const vector<double> classCenter, auto Xs, int classLenght);
-
-template <typename T>
-void printVector(const vector<T> &vec)
-{
-    for (const auto &value : vec)
-    {
-        cout << value << endl;
-    }
-}
-
-template <typename T>
-auto countList(const vector<T> &list)
-{
-    auto total = 0;
-    for (auto &value : list)
-    {
-        total += value;
-    }
-    return total;
-}
-
-template <typename T>
-vector<T> multiplyList(const vector<T> &X, const vector<int> &Y)
-{
-    if (X.size() == Y.size())
-    {
-        throw "Hanya bisa mengalikan dengan n(panjang) list yang sama";
-    }
-
-    vector<T> buffer(X.size());
-    for (int i = 0; i < X.size(); ++i)
-    {
-        buffer[i] = X[i] * Y[i];
-    }
-    return buffer;
-}
-
-auto MEAN(auto Xs, auto SigmaFrequencyU, auto SigmaFrequency, int classLenght);
 
 int main()
 {
-
+    
     int n, nClass, numRows, numCols;
     double class_Length;
     // cout << "Masukan jumlah Data (n) : " << endl;
@@ -99,7 +49,6 @@ int main()
         }
         cout << endl;
     }
-
     cout << "Frequency" << endl;
     vector<int> frequencyClass = countFrequency(rawData, classUpAndDown);
     printVector(frequencyClass);
@@ -130,99 +79,21 @@ int main()
     }
 
     cout << "SigmaFrequencyU = " << countList(result) <<endl;
-
     return 0;
 }
 
-auto MEAN(auto Xs, auto SigmaFrequencyU, auto SigmaFrequency, int classLenght){
-    return  Xs + (SigmaFrequencyU * classLenght) / SigmaFrequency;
-}
 
-vector<double> Ui(const vector<double> classCenter, auto Xs, int classLenght)
-{
-    vector<double> buffer;
-    for (int xi : classCenter)
-    {
-        buffer.push_back((xi - Xs) / classLenght);
-    }
-    return buffer;
-}
 
-vector<int> countFrequency(const vector<double> rawData, const Matrix &classUpAndDown)
-{
-    int row = classUpAndDown[0].size();
-    int col = classUpAndDown.size();
-    vector<int> buffer;
-    int frequency = 0;
-    for (int i = 0; i < col; i++)
-    {
-        for (int valData : rawData)
-        {
-            if (valData >= classUpAndDown[i][0] && valData <= classUpAndDown[i][1])
-            {
-                frequency++;
-            }
-        }
-        buffer.push_back(frequency);
-        frequency = 0;
-    }
 
-    return buffer;
-}
 
-vector<double> dataCenter(const Matrix classRoom, int class_lenght)
-{
-    int lenght = classRoom.size();
-    vector<double> xi(lenght);
-    xi[0] = (classRoom[0][0] + classRoom[0][1]) / 2;
-    for (int i = 1; i < lenght; i++)
-    {
-        xi[i] = static_cast<double>(xi[i - 1] + class_lenght);
-    }
-    return xi;
-}
 
-int classLength(vector<int> rawData, int n)
-{
 
-    double temp = static_cast<double>(rangeData(rawData)) / interval(n);
-    return round(temp);
-}
 
-int interval(int n)
-{
-    return round(1 + (3.3 * (log10(n))));
-}
 
-int rangeData(vector<int> rawData)
-{
-    return max(rawData) - min(rawData);
-}
 
-int min(vector<int> rawData)
-{
 
-    int min = rawData[0];
-    for (int i = 0; i < rawData.size(); i++)
-    {
-        if (rawData[i] < min)
-        {
-            min = rawData[i];
-        }
-    }
-    return min;
-}
 
-int max(vector<int> rawData)
-{
 
-    int max = rawData[0];
-    for (int i = 0; i < rawData.size(); i++)
-    {
-        if (rawData[i] > max)
-        {
-            max = rawData[i];
-        }
-    }
-    return max;
-}
+
+
+
