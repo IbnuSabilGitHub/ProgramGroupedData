@@ -1,13 +1,12 @@
-#include <iostream>
 // #include <functionGroupedData.h> // Import Function
-#include "HeaderFunction.h"
+#include <iostream>
+#include "headerFunction.h"
 using namespace std;
 
 int main()
 {
     
-    int n, nClass, numRows, numCols;
-    double class_Length;
+    int n, nClass, numRows, numCols, class_Length;
     // cout << "Masukan jumlah Data (n) : " << endl;
     // cin >> n;
     vector<int> rawData = {58, 53, 56, 64, 50, 50, 55, 57, 56, 56,
@@ -20,7 +19,6 @@ int main()
     numRows = 2;                                             // batas bawah dan batas atas
     numCols = interval(n);                                   // Jumlah Kolom data kelompok
     Matrix classUpAndDown(numCols, vector<int>(numRows, 0)); // Initialize with 0 for example
-
     int buffer = (min(rawData) - 1); // meyimpan data yang telah di jumlahkan  dan
 
     // Looping Untuk Memasukan data bawah dan atas
@@ -57,7 +55,7 @@ int main()
     vector<double> classCenter = dataCenter(classUpAndDown, class_Length);
     printVector(classCenter);
 
-    auto TempMean = classCenter[(classCenter.size() / 2)];
+    int TempMean = classCenter[(classCenter.size() / 2)];
 
     cout << "Ui" << endl;
     vector<double> ui = Ui(classCenter, TempMean, class_Length);

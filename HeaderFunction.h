@@ -1,19 +1,16 @@
+#pragma once
 
-#ifndef FUNCTION_H
-#define FUNCTION_H
-
+#include <iostream>
 #include <vector>
-#include <cmath>
-#include <algorithm>
+
 
 typedef std::vector<std::vector<int>> Matrix;
-
 
 template <typename T>
 void printVector(const std::vector<T> &vec);
 
 template <typename T>
-auto countList(const std::vector<T> &list);
+T countList(const std::vector<T> &list);
 
 template <typename T, typename U>
 std::vector<T> multiplyList(const std::vector<T> &X, const std::vector<U> &Y);
@@ -31,8 +28,9 @@ int classLength(const std::vector<int> &rawData, int n);
 std:: vector<double> dataCenter(const Matrix &classRoom, int class_lenght);
 
 
-std::vector<int> countFrequency(const std::vector<int> &rawData, const Matrix &classUpAndDown);
+std::vector<int> countFrequency(const std::vector<int> rawData, const Matrix classUpAndDown);
 
-std::vector<double> Ui(const std::vector<double> &classCenter, auto Xs, int classLenght)
+std::vector<double> Ui(const std::vector<double> &classCenter, int Xs, int classLenght);
 
-#endif
+
+#include "functionImpl.tpp"

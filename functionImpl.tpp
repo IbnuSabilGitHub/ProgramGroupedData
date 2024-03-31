@@ -1,7 +1,10 @@
-#ifndef FUNCTION_IMPL_H
-#define FUNCTION_IMPL_H
+#pragma once
 
-#include "HeaderFunction.h" // file header deklarasi
+#include "headerFunction.h"
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
 
 // Function tempalte untuk print vector
 template <typename T> // template untuk 
@@ -15,7 +18,7 @@ void printVector(const std::vector<T> &vec) //Parameter(vector/Array)
 
 // Function Template untuk menghitung total value dari vector 
 template <typename T>
-auto countList(const std::vector<T> &list) // Pareanter(Vector)
+T countList(const std::vector<T> &list) // Pareanter(Vector)
 {
     auto total = 0; // variabel untuk menyimpan hasil perjumlahan
     for (auto &value : list) // foreach loop
@@ -29,7 +32,7 @@ auto countList(const std::vector<T> &list) // Pareanter(Vector)
 template <typename T, typename U>
 std::vector<T> multiplyList(const std::vector<T> &X, const std::vector<U> &Y)//Paranter(Vector X, Vector Y)aaaaaaaaaaaaaaaaaaaa
 {
-    if (X.size() == Y.size()) // jika n dari kedua vector sama maka akan eror
+    if (X.size() != Y.size()) // jika n dari kedua vector sama maka akan eror
     {
         throw "Hanya bisa mengalikan dengan n(panjang) list yang sama";
     }
@@ -109,7 +112,7 @@ std:: vector<double> dataCenter(const Matrix &classRoom, int class_lenght)
     return xi;
 }
 
-std::vector<int> countFrequency(const std::vector<int> &rawData, const Matrix &classUpAndDown)
+std::vector<int> countFrequency(const std::vector<int> rawData, const Matrix classUpAndDown)
 {
     int row = classUpAndDown[0].size();
     int col = classUpAndDown.size();
@@ -131,9 +134,9 @@ std::vector<int> countFrequency(const std::vector<int> &rawData, const Matrix &c
     return buffer;
 }
 
-std::vector<double> Ui(const std::vector<double> &classCenter, auto Xs, int classLenght)
+std::vector<double> Ui(const std::vector<double> &classCenter, int Xs, int classLenght)
 {
-    std::vector<double> buffer;
+    std::vector<double> buffer;      
     for (int xi : classCenter)
     {
         buffer.push_back((xi - Xs) / classLenght);
@@ -141,8 +144,4 @@ std::vector<double> Ui(const std::vector<double> &classCenter, auto Xs, int clas
     return buffer;
 }
 
-auto MEAN(auto Xs, auto SigmaFrequencyU, auto SigmaFrequency, int classLenght){
-    return  Xs + (SigmaFrequencyU * classLenght) / SigmaFrequency;
-}
 
-#endif
