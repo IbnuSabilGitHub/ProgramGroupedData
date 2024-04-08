@@ -5,7 +5,6 @@ using namespace std;
 
 int main()
 {
-    
     int n, nClass, numRows, numCols, class_Length;
     // cout << "Masukan jumlah Data (n) : " << endl;
     // cin >> n;
@@ -19,7 +18,7 @@ int main()
     numRows = 2;                                             // batas bawah dan batas atas
     numCols = interval(n);                                   // Jumlah Kolom data kelompok
     Matrix classUpAndDown(numCols, vector<int>(numRows, 0)); // Initialize with 0 for example
-    int buffer = (min(rawData) - 1); // meyimpan data yang telah di jumlahkan  dan
+    int buffer = (min(rawData) - 1);                         // meyimpan data yang telah di jumlahkan  dan
 
     // Looping Untuk Memasukan data bawah dan atas
     for (int i = 0; i < numCols; i++)
@@ -47,51 +46,42 @@ int main()
         }
         cout << endl;
     }
-    cout << "Frequency" << endl;
+
+    cout << "-----------------Frequency-----------------" << endl;
     vector<int> frequencyClass = countFrequency(rawData, classUpAndDown);
     printVector(frequencyClass);
 
-    cout << "Xi" << endl;
+    cout << "---------------Sigma Frequency---------------" << endl;
+    vector<int> sigmaFrequency = sigmaF(frequencyClass);
+    printVector(sigmaFrequency);
+
+    cout << "---------------------Xi---------------------" << endl;
     vector<double> classCenter = dataCenter(classUpAndDown, class_Length);
     printVector(classCenter);
 
-    int TempMean = classCenter[(classCenter.size() / 2)];
+    auto TempMean = classCenter[(classCenter.size() / 2)];
 
-    cout << "Ui" << endl;
+    cout << "---------------------Ui---------------------" << endl;
     vector<double> ui = Ui(classCenter, TempMean, class_Length);
     printVector(ui);
 
-    cout << "F(Ui)" << endl;
-    vector<double> result = multiplyList(ui, frequencyClass);
+    cout << "--------------------F(Ui)--------------------" << endl;
+    vector<double> sigFiUi = multiplyList(ui, frequencyClass);
     try
     {
-        for (int value : result)
+        for (int value : sigFiUi)
         {
             cout << value << endl;
         }
-        
     }
     catch (const char *message)
     {
         cout << "Error: " << message << endl;
     }
 
-    cout << "SigmaFrequencyU = " << countList(result) <<endl;
+    int F = countList(frequencyClass);
+    auto Fu = countList(sigFiUi);
+    cout << "Mean dari data kelompok = " << mean(TempMean, F, Fu, class_Length) << endl;
+
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,6 +5,8 @@
 #include <vector>
 #include <cmath>
 #include <algorithm>
+#include <string>
+
 
 // Function tempalte untuk print vector
 template <typename T> // template untuk 
@@ -142,6 +144,21 @@ std::vector<double> Ui(const std::vector<double> &classCenter, int Xs, int class
         buffer.push_back((xi - Xs) / classLenght);
     }
     return buffer;
+}
+
+template<typename T>
+std::vector<T> sigmaF(const std::vector<T> &Frequency){
+    std::vector<T> buffer;
+    buffer.push_back(Frequency[0]);
+    for (int i = 1; i < Frequency.size(); i++)
+    {
+        buffer.push_back(buffer[i - 1] + Frequency[i]);
+    }
+    return buffer;
+}
+
+double mean(double &Xs, int &total_f, double &total_sigma_Fu, int &classLenght){
+    return Xs + ((total_sigma_Fu * classLenght) / total_f);
 }
 
 
